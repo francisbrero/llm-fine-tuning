@@ -1,0 +1,55 @@
+# Virtual environment
+.venv/
+venv/
+env/
+
+# Model files (large binaries - download separately)
+models/
+
+# Large model weights (but keep small adapter weights)
+models/**/*.safetensors
+models/**/*.bin
+*.pt
+*.pth
+
+# Adapter checkpoints (keep final adapter, ignore intermediate)
+ccp-adapter/checkpoint-*/
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+*.egg-info/
+dist/
+build/
+eggs/
+*.egg
+
+# Jupyter
+.ipynb_checkpoints/
+*.ipynb_checkpoints
+
+# IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+logs/
+
+# Temporary files
+tmp/
+temp/
+*.tmp
+
+# HuggingFace cache
+.cache/
