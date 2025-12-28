@@ -309,11 +309,14 @@ When generating training data for CCP:
 6. **Geographic diversity**: Include regional variations in terminology
 7. **Multi-signal prompts**: "My EMEA enterprise deals at risk" has multiple signals
 
-### Training Data Format
+### Training Data Format (v2 - Chain-of-Thought)
+
+CCP v2 uses Chain-of-Thought training to ensure the model learns GTM semantics, not just JSON formatting. Each training example includes a **reasoning chain** that explains the inference process.
 
 ```json
 {
   "gtm_prompt": "Show me my best accounts",
+  "reasoning": "- 'my accounts' indicates personally assigned accounts, suggesting sales rep role\n- 'best' is ambiguous: could mean highest ARR, best fit, or most engaged\n- No time horizon mentioned, defaulting to current quarter\n- Expansion motion inferred for existing customer accounts",
   "intent_ir": {
     "intent_type": "account_discovery",
     "motion": "expansion",
@@ -321,3 +324,69 @@ When generating training data for CCP:
   }
 }
 ```
+
+---
+
+## 13. Reasoning Chain Guidelines (v2)
+
+The reasoning chain should:
+
+1. **Identify explicit signals**: Keywords and jargon present in the prompt
+2. **Explain inferences**: Why each field value was chosen
+3. **Note ambiguities**: What's unclear and how it affects confidence
+4. **Reference GTM knowledge**: Use domain-specific reasoning
+
+### Good Reasoning Example
+
+```
+Prompt: "Which deals are at risk this quarter?"
+
+Reasoning:
+- 'at risk' explicitly signals churn/risk concern - this is a churn risk assessment
+- 'deals' indicates active pipeline, not just accounts
+- 'this quarter' explicitly sets quarterly time horizon (confidence: 1.0)
+- Question about deal-level risk suggests manager perspective (monitors team pipeline)
+- Churn prevention motion inferred from risk context
+- Existing scope implied - you can't have at-risk deals with non-customers
+```
+
+### Bad Reasoning (Too Shallow)
+
+```
+Reasoning:
+- User wants to see at-risk deals
+- Setting intent to churn_risk_assessment
+```
+
+This is bad because it doesn't explain WHY the inference was made.
+
+### Adversarial Reasoning Example
+
+For ambiguous or non-GTM prompts, reasoning should flag uncertainty:
+
+```
+Prompt: "Show me the zorbax metrics"
+
+Reasoning:
+- 'zorbax' is not a recognized GTM term or metric
+- Unable to map to known intent types, motions, or roles
+- This may be a typo, internal jargon, or non-GTM request
+- Setting all confidence scores very low
+- Clarification needed before proceeding
+```
+
+---
+
+## 14. Adversarial Test Cases
+
+Use these prompts to validate that the model learned GTM semantics (not just formatting):
+
+| Prompt | Expected Behavior |
+|--------|------------------|
+| "accounts" | Very low confidence, clarification_needed=true |
+| "Show me the zorbax metrics" | High uncertainty, unrecognized term flagged |
+| "What's the weather like?" | Wrong domain, very low confidence |
+| "Make me a sandwich" | Complete mismatch, should fail gracefully |
+| "Show me accounts" (no "my") | Lower role confidence than "my accounts" |
+
+If the model confidently produces JSON for nonsense prompts, it's learning syntax over semantics.
