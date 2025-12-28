@@ -97,12 +97,23 @@ pip install torch transformers peft bitsandbytes datasets accelerate
 from transformers import AutoModelForCausalLM, AutoTokenizer
 from peft import PeftModel
 
-# Load base + adapter
+# Load base + adapter (tokenizer from base model)
 base_model = AutoModelForCausalLM.from_pretrained("./models/phi-2")
 model = PeftModel.from_pretrained(base_model, "./ccp-adapter")
-tokenizer = AutoTokenizer.from_pretrained("./ccp-adapter")
+tokenizer = AutoTokenizer.from_pretrained("./models/phi-2")
 
 # Parse GTM intent
 prompt = "Show me my best accounts"
-# ... (see notebook for full inference code)
+input_text = f"### GTM Prompt:\n{prompt}\n\n### Intent IR:\n"
+inputs = tokenizer(input_text, return_tensors="pt")
+output = model.generate(**inputs, max_new_tokens=200, temperature=0.1)
+print(tokenizer.decode(output[0], skip_special_tokens=True))
+```
+
+## Testing
+
+Run a quick before/after comparison:
+
+```bash
+python simple_test.py
 ```

@@ -15,6 +15,14 @@ models/**/*.bin
 # Adapter checkpoints (keep final adapter, ignore intermediate)
 ccp-adapter/checkpoint-*/
 
+# Tokenizer files (use base model's tokenizer instead)
+ccp-adapter/tokenizer.json
+ccp-adapter/merges.txt
+ccp-adapter/vocab.json
+ccp-adapter/added_tokens.json
+ccp-adapter/special_tokens_map.json
+ccp-adapter/tokenizer_config.json
+
 # Python
 __pycache__/
 *.py[cod]
