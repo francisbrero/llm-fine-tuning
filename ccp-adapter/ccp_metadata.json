@@ -1,31 +1,9 @@
 {
-  "schema_version": "1.0.0",
+  "schema_version": "2.0.0",
   "base_model": "./models/phi-2",
-  "intent_types": [
-    "account_discovery",
-    "pipeline_analysis",
-    "expansion_identification",
-    "churn_risk_assessment",
-    "lead_prioritization",
-    "territory_planning",
-    "forecast_review",
-    "competitive_analysis",
-    "engagement_summary"
-  ],
-  "motions": [
-    "outbound",
-    "inbound",
-    "expansion",
-    "renewal",
-    "churn_prevention"
-  ],
-  "role_assumptions": [
-    "sales_rep",
-    "sales_manager",
-    "revops",
-    "marketing",
-    "cs",
-    "exec",
-    "sdr"
-  ]
+  "training_approach": "chain_of_thought",
+  "output_format": {
+    "reasoning": "<reasoning>...</reasoning>",
+    "intent_ir": "<intent_ir>{JSON}</intent_ir>"
+  }
 }
