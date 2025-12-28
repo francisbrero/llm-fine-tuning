@@ -13,8 +13,9 @@ from peft import PeftModel
 
 # Test prompts covering various GTM scenarios
 TEST_PROMPTS = [
-    "Show me my best accounts",
-    "Which deals are at risk this quarter?",
+    "Show me my top accounts",
+    "Help me forecast my quarter for my pipeline review?",
+    "I'm running out of inbound leads, which accounts should I target to hit my number?",
     "Find me fintech companies hiring SDRs in NYC",
     "I need to hit my number",
     "Accounts with declining NPS scores",

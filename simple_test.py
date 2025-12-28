@@ -8,9 +8,9 @@ from transformers import AutoModelForCausalLM, AutoTokenizer
 from peft import PeftModel
 
 PROMPTS = [
-    "Show me my best accounts",
-    "Which deals are at risk?",
-    "Expansion opportunities in EMEA",
+    "Show me my top accounts",
+    "Help me forecast my quarter for my pipeline review?",
+    "I'm running out of inbound leads, which accounts should I target to hit my number?",
 ]
 
 def generate(model, tokenizer, prompt):
