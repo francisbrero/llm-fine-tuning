@@ -29,8 +29,8 @@ IR_SCHEMA_VERSION = "2.0.0"
 NUM_EPOCHS = 3
 LEARNING_RATE = 2e-4
 BATCH_SIZE = 1
-GRAD_ACCUM_STEPS = 8
-MAX_SEQ_LENGTH = 1536
+GRAD_ACCUM_STEPS = 16  # Increased to compensate for smaller batch
+MAX_SEQ_LENGTH = 1024  # Reduced for memory efficiency on MPS
 
 # ===== SYSTEM PROMPT =====
 CCP_SYSTEM_PROMPT = """You are the Phoenix Context Collapse Parser (CCP). Your job is to transform ambiguous GTM (Go-To-Market) prompts into structured GTM Intent IR.
@@ -204,6 +204,11 @@ User request: {prompt} [/INST]
     print(f"  Learning rate: {LEARNING_RATE}")
     print(f"  Max sequence length: {MAX_SEQ_LENGTH}")
     print()
+
+    # Clear MPS cache before training to free memory
+    if torch.backends.mps.is_available():
+        torch.mps.empty_cache()
+        print("  MPS cache cleared before training")
 
     trainer.train()
 
