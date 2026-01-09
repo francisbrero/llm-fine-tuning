@@ -61,3 +61,11 @@ temp/
 
 # HuggingFace cache
 .cache/
+
+# Dev docs (active work, archived tasks)
+dev/active/
+dev/completed/
+
+# Claude hooks runtime files
+.claude/hooks/.edit-log.json
+.claude/hooks/node_modules/

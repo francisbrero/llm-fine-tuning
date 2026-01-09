@@ -1,0 +1,262 @@
+{
+  "model_type": "finetuned",
+  "timestamp": "2026-01-09T08:23:31.880841",
+  "total_examples": 5,
+  "examples": [
+    {
+      "prompt": "Help me prepare for my QBR",
+      "expected": {
+        "intent_type": "forecast_review",
+        "motion": "expansion",
+        "role_assumption": "sales_rep",
+        "account_scope": "existing",
+        "time_horizon": "this_quarter"
+      },
+      "predicted": {
+        "intent_type": "forecast_review",
+        "intent_scope": "gtm",
+        "assumptions": {
+          "role_scope": "account_manager",
+          "metrics_scope": "performance",
+          "time_scope": "next_quarter",
+          "view_scope": "all",
+          "output_format": "summary"
+        },
+        "output_format": "summary",
+        "confidence_scores": {
+          "intent_type": 0.9,
+          "intent_scope": 0.9,
+          "assumptions": 0.8,
+          "time_scope": 0.8,
+          "view_scope": 0.8,
+          "metrics_scope": 0.7,
+          "role_scope": 0.7,
+          "output_format": 0.7
+        },
+        "assumption_resolution": null
+      },
+      "reasoning": "- This is a forecast review request - user wants to check quota/target progress\n- GTM context is explicitly mentioned in the prompt\n- Quota/target analysis indicates performance tracking/metrics focus\n- QBR (Quarterly Business Review) is annual planning cycle\n- Preparing for QBR means user wants to prepare annual forecast\n- QBR is annual planning cycle\n- This year-over-year (YOY) perspective",
+      "scores": {
+        "json_valid": true,
+        "field_scores": {
+          "intent_type": 1.0,
+          "motion": 0.0,
+          "role_assumption": 0.0,
+          "account_scope": 0.0,
+          "time_horizon": 0.0
+        },
+        "field_accuracy": 0.2,
+        "reasoning_present": true,
+        "clarification_correct": null
+      },
+      "latency_ms": 51291.75305366516,
+      "category": "standard",
+      "difficulty": "medium"
+    },
+    {
+      "prompt": "Which accounts haven't been touched in 30 days?",
+      "expected": {
+        "intent_type": "churn_risk_assessment",
+        "motion": "churn_prevention",
+        "role_assumption": "cs",
+        "account_scope": "existing",
+        "time_horizon": "this_month"
+      },
+      "predicted": {
+        "intent": "churn_risk_forecast",
+        "assumptions": {
+          "churn_risk_scope": "at_risk",
+          "churn_risk_analysis_scope": "forecast",
+          "renewal_time_horizon": "next_quarter",
+          "geography_scope": null,
+          "account_type_scope": null,
+          "product_scope": null,
+          "quantity_scope": null,
+          "granularity": null
+        },
+        "output_format": "detailed",
+        "interpretation_text": "Churn risk analysis - user wants to predict churn in upcoming periods\nAt-risk accounts - typically low-value, high-renewal\nChurn prevention - taking action to retain at-risk accounts\nThis is a churn prevention request\nUser wants to take action to retain at-risk accounts\nChurn prevention strategy typically includes: retention incentives, upsell/cross-sell opportunities"
+      },
+      "reasoning": "- This is a churn risk assessment request - user wants to identify at-risk accounts\n- Churn risk analysis typically includes: churn history, at-risk accounts, retention strategies\n- In this prompt, user likely wants to identify churn risk\n- Churn risk analysis typically includes: churn history, at-risk accounts, retention strategies\n- This is a churn risk forecast request\n- User wants to predict churn in upcoming periods\n- Churn risk analysis typically includes: churn history, at-risk accounts, ",
+      "scores": {
+        "json_valid": true,
+        "field_scores": {
+          "intent_type": 0.0,
+          "motion": 0.0,
+          "role_assumption": 0.0,
+          "account_scope": 0.0,
+          "time_horizon": 0.0
+        },
+        "field_accuracy": 0.0,
+        "reasoning_present": true,
+        "clarification_correct": null
+      },
+      "latency_ms": 68684.99779701233,
+      "category": "standard",
+      "difficulty": "medium"
+    },
+    {
+      "prompt": "Net new ARR this quarter",
+      "expected": {
+        "intent_type": "forecast_review",
+        "motion": "outbound",
+        "role_assumption": "sales_manager",
+        "account_scope": "net_new",
+        "time_horizon": "this_quarter"
+      },
+      "predicted": {},
+      "reasoning": "",
+      "scores": {
+        "json_valid": false,
+        "field_scores": {},
+        "field_accuracy": 0.0,
+        "reasoning_present": false,
+        "clarification_correct": null
+      },
+      "latency_ms": 38669.09384727478,
+      "category": "standard",
+      "difficulty": "medium"
+    },
+    {
+      "prompt": "Show me SQLs from the webinar",
+      "expected": {
+        "intent_type": "lead_prioritization",
+        "motion": "inbound",
+        "role_assumption": "sdr",
+        "account_scope": "net_new",
+        "time_horizon": "this_week"
+      },
+      "predicted": {
+        "intent_type": "lead_scoring",
+        "intent_category": "deal_context",
+        "intent_assumption": "rep_or_account_manager",
+        "output_format": null,
+        "confidence_scores": {
+          "intent_type": 0.85,
+          "intent_category": 0.8,
+          "intent_assumption": 0.7,
+          "output_format": 0.9,
+          "webinar_analysis": 0.75,
+          "segment_assumption": null
+        },
+        "assumptions": [
+          "Rep or account manager role",
+          "Recent activity",
+          "SQL language"
+        ],
+        "assumption_explicit": null,
+        "geo_scope": null,
+        "segment_assumption": null,
+        "invoice_type": null,
+        "product_scope": null,
+        "qualification_criteria": null,
+        "deal_stage": null
+      },
+      "reasoning": "- This is a lead scoring request - user wants to rank/prioritize leads by deal stage/qualification criteria\n- Webinar content analysis suggests user is a rep or account manager\n- Webinar mention indicates recent activity, but no specific deal context\n- SQL (Structured Query Language) is the language of data\n- This is a lead scoring context\n- User wants to rank/score leads by deal stage/qualification criteria\n- Webinar content analysis suggests rep or account manager role\n- Webinar mention indica",
+      "scores": {
+        "json_valid": true,
+        "field_scores": {
+          "intent_type": 0.0,
+          "motion": 0.0,
+          "role_assumption": 0.0,
+          "account_scope": 0.0,
+          "time_horizon": 0.0
+        },
+        "field_accuracy": 0.0,
+        "reasoning_present": true,
+        "clarification_correct": null
+      },
+      "latency_ms": 46759.28092002869,
+      "category": "standard",
+      "difficulty": "medium"
+    },
+    {
+      "prompt": "Who's ghosting us?",
+      "expected": {
+        "intent_type": "churn_risk_assessment",
+        "motion": "churn_prevention",
+        "role_assumption": "sales_rep",
+        "account_scope": "existing",
+        "time_horizon": "this_month",
+        "clarification_needed": false
+      },
+      "predicted": {
+        "pipeline_view_assumption": "User wants to view deal pipeline status",
+        "pipeline_analysis_scope": "Next quarter or longer",
+        "interpretation_method": "Default for this request type",
+        "inferred_role": "ARPM",
+        "inferred_motion": "Outbound"
+      },
+      "reasoning": "- This is a pipeline_view request\n- User wants to view deal pipeline status\n- RevOps metrics typically included\n- Deal close is the most significant event\n- Interpreted as pipeline_view context",
+      "scores": {
+        "json_valid": true,
+        "field_scores": {
+          "intent_type": 0.0,
+          "motion": 0.0,
+          "role_assumption": 0.0,
+          "account_scope": 0.0,
+          "time_horizon": 0.0,
+          "clarification_needed": 0.0
+        },
+        "field_accuracy": 0.0,
+        "reasoning_present": true,
+        "clarification_correct": true
+      },
+      "latency_ms": 178179.97097969055,
+      "category": "slang",
+      "difficulty": "hard"
+    }
+  ],
+  "aggregate": {
+    "json_valid_rate": 0.8,
+    "field_accuracy": 0.04,
+    "by_category": {
+      "standard": {
+        "accuracy": 0.05,
+        "json_valid_rate": 0.75,
+        "count": 4
+      },
+      "slang": {
+        "accuracy": 0.0,
+        "json_valid_rate": 1.0,
+        "count": 1
+      }
+    },
+    "by_difficulty": {
+      "medium": {
+        "accuracy": 0.05,
+        "count": 4
+      },
+      "hard": {
+        "accuracy": 0.0,
+        "count": 1
+      }
+    },
+    "by_field": {
+      "intent_type": {
+        "accuracy": 0.25,
+        "count": 4
+      },
+      "motion": {
+        "accuracy": 0.0,
+        "count": 4
+      },
+      "role_assumption": {
+        "accuracy": 0.0,
+        "count": 4
+      },
+      "account_scope": {
+        "accuracy": 0.0,
+        "count": 4
+      },
+      "time_horizon": {
+        "accuracy": 0.0,
+        "count": 4
+      },
+      "clarification_needed": {
+        "accuracy": 0.0,
+        "count": 1
+      }
+    }
+  }
+}
