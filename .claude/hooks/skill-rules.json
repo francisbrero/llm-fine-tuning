@@ -1,0 +1,85 @@
+{
+  "version": "1.0",
+  "skills": {
+    "fine-tuning": {
+      "type": "domain",
+      "priority": "high",
+      "file": ".claude/skills/technical/fine-tuning.md",
+      "description": "LLM fine-tuning patterns with QLoRA and PEFT",
+      "promptTriggers": {
+        "keywords": ["fine-tune", "finetune", "training", "lora", "qlora", "peft", "adapter"],
+        "intentPatterns": ["train.*model", "fine.*tune", "improve.*model", "retrain"]
+      }
+    },
+    "gtm-domain": {
+      "type": "domain",
+      "priority": "high",
+      "file": ".claude/skills/technical/gtm-domain.md",
+      "description": "GTM (Go-To-Market) domain knowledge for CCP",
+      "promptTriggers": {
+        "keywords": ["gtm", "intent", "motion", "churn", "pipeline", "forecast", "icp", "sales"],
+        "intentPatterns": ["gtm.*intent", "sales.*context", "b2b.*term"]
+      }
+    },
+    "ccp-architecture": {
+      "type": "reference",
+      "priority": "high",
+      "file": ".claude/skills/reference/ccp-architecture.md",
+      "description": "CCP architecture and GTM Intent IR schema",
+      "promptTriggers": {
+        "keywords": ["ccp", "intent_ir", "schema", "output format", "json structure"],
+        "intentPatterns": ["ccp.*output", "intent.*schema", "ir.*format"]
+      }
+    },
+    "evaluation": {
+      "type": "domain",
+      "priority": "medium",
+      "file": ".claude/skills/technical/evaluation.md",
+      "description": "Model evaluation and metrics tracking",
+      "promptTriggers": {
+        "keywords": ["eval", "evaluation", "metrics", "accuracy", "benchmark", "test"],
+        "intentPatterns": ["run.*eval", "check.*accuracy", "measure.*performance"]
+      }
+    },
+    "modify-training-data": {
+      "type": "runbook",
+      "priority": "critical",
+      "file": ".claude/skills/runbooks/modify-training-data.md",
+      "description": "Steps for modifying CCP training data",
+      "promptTriggers": {
+        "keywords": ["training data", "jsonl", "add examples", "fix schema"],
+        "intentPatterns": ["add.*training", "update.*data", "fix.*examples", "change.*schema"]
+      }
+    },
+    "run-training": {
+      "type": "runbook",
+      "priority": "high",
+      "file": ".claude/skills/runbooks/run-training.md",
+      "description": "Steps for running CCP fine-tuning",
+      "promptTriggers": {
+        "keywords": ["run training", "start training", "execute notebook"],
+        "intentPatterns": ["train.*ccp", "run.*fine.*tune", "execute.*training"]
+      }
+    },
+    "run-evaluation": {
+      "type": "runbook",
+      "priority": "high",
+      "file": ".claude/skills/runbooks/run-evaluation.md",
+      "description": "Steps for running CCP evaluation",
+      "promptTriggers": {
+        "keywords": ["run eval", "run evaluation", "check metrics", "test model"],
+        "intentPatterns": ["run.*eval", "execute.*eval", "check.*model"]
+      }
+    },
+    "troubleshooting": {
+      "type": "runbook",
+      "priority": "medium",
+      "file": ".claude/skills/runbooks/troubleshooting.md",
+      "description": "Common issues and solutions",
+      "promptTriggers": {
+        "keywords": ["error", "issue", "problem", "not working", "failed", "oom", "memory"],
+        "intentPatterns": ["fix.*error", "debug.*issue", "why.*fail"]
+      }
+    }
+  }
+}

@@ -1,0 +1,13 @@
+{
+  "name": "claude-hooks",
+  "version": "1.0.0",
+  "description": "Claude Code hooks for CCP project",
+  "private": true,
+  "type": "module",
+  "dependencies": {
+    "tsx": "^4.7.0"
+  },
+  "devDependencies": {
+    "@types/node": "^20.10.0"
+  }
+}

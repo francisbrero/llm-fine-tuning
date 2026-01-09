@@ -65,3 +65,90 @@ Required output fields from CCP:
 - `account_scope`: net_new, existing, churned, all
 - `confidence_scores`: 0.0-1.0 per inferred field
 - `assumptions_applied`: human-readable list of inferences made
+
+## Evaluation
+
+Run evaluations to track model performance:
+
+```bash
+# Quick eval (5 examples)
+python run_evals.py --quick
+
+# Full eval (30 examples)
+python run_evals.py --model finetuned
+
+# View history
+python eval_history.py
+python eval_history.py --compare 2  # Compare last 2 runs
+```
+
+Key metrics:
+- **JSON Valid Rate**: Target 95%+
+- **Field Accuracy**: Target 70%+
+- **Intent Type Accuracy**: Target 80%+
+
+Results saved to `eval_results/` and summarized in `EVAL_RESULTS.md`.
+
+## Skill Auto-Activation System
+
+This project includes automatic skill activation based on prompt context.
+
+**How it works:**
+1. When you submit a prompt, the `skill-activation-prompt` hook analyzes it
+2. It matches keywords and patterns against skill definitions in `.claude/hooks/skill-rules.json`
+3. Matching skills are displayed with priority levels (critical/high/medium/low)
+4. The hook instructs Claude to read referenced skill files before responding
+
+**Skill types:**
+- **Technical skills** (`.claude/skills/technical/`): Framework patterns, best practices
+- **Runbooks** (`.claude/skills/runbooks/`): Step-by-step procedures
+- **References** (`.claude/skills/reference/`): Architecture documentation
+
+**Setup (if hooks not working):**
+```bash
+cd .claude/hooks
+npm install   # Install tsx dependency
+chmod +x *.sh # Make scripts executable
+```
+
+## Dev Docs System
+
+For multi-session tasks, use the dev docs system for context persistence:
+
+```
+dev/
+├── active/           # In-progress tasks (gitignored)
+│   └── issue-123/
+│       ├── plan.md       # Implementation plan
+│       ├── context.md    # Current state, key files
+│       └── tasks.md      # Checklist with status
+├── completed/        # Archived tasks (gitignored)
+└── templates/        # Templates (tracked in git)
+```
+
+**Workflow:**
+1. Create task folder: `mkdir -p dev/active/issue-123`
+2. Copy templates: `cp dev/templates/*.md dev/active/issue-123/`
+3. Update context frequently during work
+4. Move to `completed/` when done
+
+## Slash Commands
+
+- `/fix-issue <number>` - Fetch GitHub issue and implement with full workflow
+
+## Key Commands
+
+```bash
+# Training
+jupyter notebook fine_tune_llm_mac_mps.ipynb
+
+# Testing
+python simple_test.py
+
+# Evaluation
+python run_evals.py --quick
+python eval_history.py --detail latest
+
+# Data validation
+python -c "import json; [json.loads(l) for l in open('data/ccp_training_with_reasoning.jsonl')]"
+```
