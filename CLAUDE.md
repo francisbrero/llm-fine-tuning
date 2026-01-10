@@ -136,19 +136,65 @@ dev/
 
 - `/fix-issue <number>` - Fetch GitHub issue and implement with full workflow
 
-## Key Commands
+## CCP CLI
+
+The project includes a CLI for all fine-tuning and evaluation operations:
 
 ```bash
-# Training
+# Show all commands
+python ccp_cli.py --help
+
+# Validate training data
+python ccp_cli.py validate-data
+python ccp_cli.py validate-data --file data/ccp_training_with_reasoning.jsonl --verbose
+
+# Train the model
+python ccp_cli.py train --dry-run              # Validate setup without training
+python ccp_cli.py train                         # Run training with defaults
+python ccp_cli.py train --epochs 5 --lr 1e-4   # Custom parameters
+python ccp_cli.py train --resume-from latest   # Resume from checkpoint
+
+# Evaluate model performance
+python ccp_cli.py eval --quick                 # Quick eval (5 examples)
+python ccp_cli.py eval --model finetuned       # Full evaluation
+python ccp_cli.py eval --category adversarial  # Filter by category
+
+# Run inference on a single prompt
+python ccp_cli.py inference "Show me my best accounts"
+python ccp_cli.py inference "Accounts at risk" --json-only | jq .
+
+# View evaluation history
+python ccp_cli.py history
+python ccp_cli.py history --compare 2          # Compare last 2 runs
+python ccp_cli.py history --detail latest      # Detailed view
+python ccp_cli.py history --export results.csv # Export to CSV
+```
+
+### CLI Options
+
+| Command | Description |
+|---------|-------------|
+| `validate-data` | Validate training data schema and content |
+| `train` | Fine-tune the CCP model with checkpoint resume support |
+| `eval` | Evaluate model performance against test set |
+| `inference` | Run single inference on a GTM prompt |
+| `history` | View and analyze evaluation history |
+
+## Legacy Commands
+
+The following standalone scripts are still available:
+
+```bash
+# Training (notebook)
 jupyter notebook fine_tune_llm_mac_mps.ipynb
 
 # Testing
 python simple_test.py
 
-# Evaluation
+# Evaluation (legacy)
 python run_evals.py --quick
 python eval_history.py --detail latest
 
-# Data validation
+# Data validation (one-liner)
 python -c "import json; [json.loads(l) for l in open('data/ccp_training_with_reasoning.jsonl')]"
 ```
