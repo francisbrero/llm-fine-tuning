@@ -1,0 +1,116 @@
+{
+  "model_type": "finetuned",
+  "timestamp": "2026-01-11T09:43:27.658270",
+  "num_examples": 5,
+  "overall": {
+    "json_valid": 5,
+    "field_accuracy": 0.4133333333333333,
+    "total_latency_ms": 427661.0720157623,
+    "json_valid_rate": 1.0,
+    "avg_latency_ms": 85532.21440315247
+  },
+  "by_category": {
+    "standard": {
+      "json_valid": 4,
+      "field_accuracy": 0.35,
+      "count": 4,
+      "json_valid_rate": 1.0
+    },
+    "slang": {
+      "json_valid": 1,
+      "field_accuracy": 0.6666666666666666,
+      "count": 1,
+      "json_valid_rate": 1.0
+    }
+  },
+  "by_difficulty": {
+    "medium": {
+      "json_valid": 4,
+      "field_accuracy": 0.35,
+      "count": 4,
+      "json_valid_rate": 1.0
+    },
+    "hard": {
+      "json_valid": 1,
+      "field_accuracy": 0.6666666666666666,
+      "count": 1,
+      "json_valid_rate": 1.0
+    }
+  },
+  "by_field": {
+    "intent_type": {
+      "correct": 1,
+      "total": 5
+    },
+    "motion": {
+      "correct": 2,
+      "total": 5
+    },
+    "role_assumption": {
+      "correct": 1,
+      "total": 5
+    },
+    "account_scope": {
+      "correct": 3,
+      "total": 5
+    },
+    "time_horizon": {
+      "correct": 3,
+      "total": 5
+    },
+    "geography_scope": {
+      "correct": 0,
+      "total": 0
+    },
+    "output_format": {
+      "correct": 0,
+      "total": 0
+    },
+    "clarification_needed": {
+      "correct": 1,
+      "total": 1
+    }
+  },
+  "examples": [
+    {
+      "prompt": "Help me prepare for my QBR",
+      "category": "standard",
+      "difficulty": "medium",
+      "is_valid": true,
+      "field_accuracy": 0.6,
+      "latency_ms": 144923.98118972778
+    },
+    {
+      "prompt": "Which accounts haven't been touched in 30 days?",
+      "category": "standard",
+      "difficulty": "medium",
+      "is_valid": true,
+      "field_accuracy": 0.4,
+      "latency_ms": 114281.78787231445
+    },
+    {
+      "prompt": "Net new ARR this quarter",
+      "category": "standard",
+      "difficulty": "medium",
+      "is_valid": true,
+      "field_accuracy": 0.4,
+      "latency_ms": 95897.26519584656
+    },
+    {
+      "prompt": "Show me SQLs from the webinar",
+      "category": "standard",
+      "difficulty": "medium",
+      "is_valid": true,
+      "field_accuracy": 0.0,
+      "latency_ms": 42410.45880317688
+    },
+    {
+      "prompt": "Who's ghosting us?",
+      "category": "slang",
+      "difficulty": "hard",
+      "is_valid": true,
+      "field_accuracy": 0.6666666666666666,
+      "latency_ms": 30147.578954696655
+    }
+  ]
+}
