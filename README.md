@@ -110,9 +110,103 @@ output = model.generate(**inputs, max_new_tokens=200, temperature=0.1)
 print(tokenizer.decode(output[0], skip_special_tokens=True))
 ```
 
+## Evaluation
+
+### Quick Evaluation
+
+Compare base model vs fine-tuned model performance:
+
+```bash
+# Activate virtual environment
+source .venv/bin/activate
+
+# Run quick evaluation (5 examples) on both models
+python ccp_cli.py eval --model both --quick
+
+# View comparison
+python ccp_cli.py history --compare 2
+```
+
+### Full Evaluation
+
+Run comprehensive evaluation on the full test set (30 examples):
+
+```bash
+# Evaluate both models
+python ccp_cli.py eval --model both
+
+# View side-by-side comparison
+python ccp_cli.py history --model all
+
+# View detailed results for latest run
+python ccp_cli.py history --detail latest
+```
+
+### Evaluation Commands
+
+```bash
+# Evaluate only the base model
+python ccp_cli.py eval --model base --quick
+
+# Evaluate only the fine-tuned model
+python ccp_cli.py eval --model finetuned
+
+# Filter by category
+python ccp_cli.py eval --category adversarial
+python ccp_cli.py eval --category slang
+
+# Export results to CSV
+python ccp_cli.py history --export results.csv
+```
+
+### Semantic Evaluation (Recommended)
+
+The standard eval tests exact field matching, which measures syntax correctness but not GTM understanding. **Semantic evaluation** tests business value:
+
+```bash
+# Quick semantic evaluation
+python ccp_cli.py eval-semantic --quick
+
+# Compare semantic vs exact field matching
+python ccp_cli.py eval-semantic --quick --compare-with-exact
+
+# Full semantic evaluation
+python ccp_cli.py eval-semantic --model finetuned
+
+# Test both models
+python ccp_cli.py eval-semantic --model both
+```
+
+**Semantic evaluation tests:**
+- **Context understanding**: Does "best accounts" mean existing (not prospects)?
+- **Tool selection accuracy**: Would the IR select the right tool categories?
+- **Slang interpretation**: Does "ghosting us" mean churn risk?
+- **Business logic**: Does "QBR prep" imply reviewing existing accounts?
+
+**Key differences:**
+- Exact eval: `motion: "expansion"` must match exactly (41% accuracy)
+- Semantic eval: `motion: "expansion"` ≈ `motion: "upsell"` (higher accuracy, tests understanding)
+
+### Key Metrics
+
+- **JSON Valid Rate**: Percentage of outputs that are valid JSON (target: 95%+)
+- **Field Accuracy**: Average accuracy across all expected fields (target: 70%+)
+- **Intent Type Accuracy**: Accuracy of intent classification (target: 80%+)
+
+### Expected Performance
+
+Based on evaluations, fine-tuning provides dramatic improvements:
+
+| Metric | Base Model | Fine-Tuned | Improvement |
+|--------|------------|------------|-------------|
+| JSON Valid Rate | 0% | 100% | +100% |
+| Field Accuracy | 0% | 41% | +41% |
+
+**Fine-tuning is essential** - the base model cannot perform GTM intent parsing without domain-specific training.
+
 ## Testing
 
-Run a quick before/after comparison:
+Run a quick inference test:
 
 ```bash
 python simple_test.py

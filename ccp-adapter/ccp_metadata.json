@@ -5,5 +5,12 @@
   "output_format": {
     "reasoning": "<reasoning>...</reasoning>",
     "intent_ir": "<intent_ir>{JSON}</intent_ir>"
+  },
+  "training_config": {
+    "epochs": 3,
+    "learning_rate": 0.0002,
+    "batch_size": 1,
+    "gradient_accumulation": 16,
+    "max_seq_length": 1024
   }
 }

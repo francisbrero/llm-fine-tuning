@@ -69,3 +69,4 @@ dev/completed/
 # Claude hooks runtime files
 .claude/hooks/.edit-log.json
 .claude/hooks/node_modules/
+ccp-adapter-backup*/

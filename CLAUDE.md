@@ -68,26 +68,93 @@ Required output fields from CCP:
 
 ## Evaluation
 
-Run evaluations to track model performance:
+### Comparative Evaluation Workflow
+
+**Always compare base model vs fine-tuned model** to measure the impact of fine-tuning:
 
 ```bash
-# Quick eval (5 examples)
-python run_evals.py --quick
+# 1. Quick comparison (5 examples) - recommended for rapid iteration
+python ccp_cli.py eval --model both --quick
 
-# Full eval (30 examples)
-python run_evals.py --model finetuned
+# 2. View comparison
+python ccp_cli.py history --compare 2
 
-# View history
-python eval_history.py
-python eval_history.py --compare 2  # Compare last 2 runs
+# 3. Full evaluation (30 examples) - for comprehensive assessment
+python ccp_cli.py eval --model both
+
+# 4. View all results side-by-side
+python ccp_cli.py history --model all
 ```
 
-Key metrics:
-- **JSON Valid Rate**: Target 95%+
-- **Field Accuracy**: Target 70%+
-- **Intent Type Accuracy**: Target 80%+
+### Semantic Evaluation (Recommended)
 
-Results saved to `eval_results/` and summarized in `EVAL_RESULTS.md`.
+**Semantic evaluation tests GTM understanding and business value**, not just syntactic field matching:
+
+```bash
+# Quick semantic evaluation (tests context understanding)
+python ccp_cli.py eval-semantic --quick
+
+# Compare semantic vs exact field matching
+python ccp_cli.py eval-semantic --quick --compare-with-exact
+
+# Full semantic evaluation
+python ccp_cli.py eval-semantic --model finetuned
+
+# Evaluate both models with semantic scoring
+python ccp_cli.py eval-semantic --model both
+```
+
+**Why semantic evaluation matters:**
+- Tests if the model understands **implicit GTM context** (e.g., "best accounts" = existing, not prospects)
+- Validates **tool selection accuracy** (would the IR lead to correct tools?)
+- Measures **business value**, not just syntax correctness
+- Allows semantic equivalents (e.g., "churn_risk_assessment" ≈ "churn_risk_analysis")
+
+**Key semantic metrics:**
+- **Critical Field Accuracy**: Fields that determine tool selection (target: 80%+)
+- **Tool Selection Accuracy**: Would select correct tool categories (target: 85%+)
+- **Overall Semantic Score**: Weighted score emphasizing tool selection (target: 75%+)
+
+### Individual Model Evaluation
+
+```bash
+# Evaluate base model only
+python ccp_cli.py eval --model base --quick
+
+# Evaluate fine-tuned model only
+python ccp_cli.py eval --model finetuned
+
+# Filter by specific categories
+python ccp_cli.py eval --category adversarial
+python ccp_cli.py eval --category slang
+python ccp_cli.py eval --category standard
+
+# View detailed results
+python ccp_cli.py history --detail latest
+```
+
+### Evaluation Results
+
+Key metrics:
+- **JSON Valid Rate**: Target 95%+ (measures output format validity)
+- **Field Accuracy**: Target 70%+ (measures correct field extraction)
+- **Intent Type Accuracy**: Target 80%+ (measures intent classification)
+
+**Baseline Performance** (as of Jan 2026):
+
+| Metric | Base Model | Fine-Tuned | Improvement |
+|--------|------------|------------|-------------|
+| JSON Valid Rate | 0% | 100% | +100% |
+| Field Accuracy | 0% | 41% | +41% |
+
+Fine-tuning is **essential** - the base Phi-2 model has zero capability for GTM intent parsing without domain-specific training.
+
+Results are saved to `eval_results/` and can be exported:
+
+```bash
+# Export to CSV
+python ccp_cli.py history --export results.csv
+```
 
 ## Skill Auto-Activation System
 
@@ -155,9 +222,14 @@ python ccp_cli.py train --epochs 5 --lr 1e-4   # Custom parameters
 python ccp_cli.py train --resume-from latest   # Resume from checkpoint
 
 # Evaluate model performance
-python ccp_cli.py eval --quick                 # Quick eval (5 examples)
-python ccp_cli.py eval --model finetuned       # Full evaluation
-python ccp_cli.py eval --category adversarial  # Filter by category
+python ccp_cli.py eval --model both --quick        # Compare base vs fine-tuned (5 examples)
+python ccp_cli.py eval --model both                # Full comparison (30 examples)
+python ccp_cli.py eval --model finetuned           # Evaluate fine-tuned only
+python ccp_cli.py eval --category adversarial      # Filter by category
+
+# Semantic evaluation (recommended for business value)
+python ccp_cli.py eval-semantic --quick --compare-with-exact  # Compare approaches
+python ccp_cli.py eval-semantic --model finetuned             # Test GTM understanding
 
 # Run inference on a single prompt
 python ccp_cli.py inference "Show me my best accounts"

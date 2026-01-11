@@ -10,6 +10,7 @@ from ccp import __version__
 from ccp.commands.validate import validate_data
 from ccp.commands.train import train
 from ccp.commands.eval import eval_cmd
+from ccp.commands.eval_semantic import eval_semantic_cmd
 from ccp.commands.inference import inference
 from ccp.commands.history import history
 
@@ -32,7 +33,8 @@ def cli(ctx, verbose):
     Commands:
       validate-data  Validate training data schema
       train          Fine-tune the CCP model
-      eval           Evaluate model performance
+      eval           Evaluate model performance (exact field matching)
+      eval-semantic  Evaluate GTM understanding (semantic scoring)
       inference      Run inference on a single prompt
       history        View evaluation history
 
@@ -41,6 +43,7 @@ def cli(ctx, verbose):
       ccp validate-data --file data/ccp_training_with_reasoning.jsonl
       ccp train --epochs 3 --resume-from latest
       ccp eval --quick
+      ccp eval-semantic --quick --compare-with-exact
       ccp inference "Show me my best accounts"
       ccp history --compare 2
     """
@@ -52,6 +55,7 @@ def cli(ctx, verbose):
 cli.add_command(validate_data)
 cli.add_command(train)
 cli.add_command(eval_cmd, name="eval")
+cli.add_command(eval_semantic_cmd, name="eval-semantic")
 cli.add_command(inference)
 cli.add_command(history)
 
