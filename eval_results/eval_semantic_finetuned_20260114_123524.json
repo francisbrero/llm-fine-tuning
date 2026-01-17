@@ -1,0 +1,363 @@
+{
+  "model_type": "finetuned",
+  "timestamp": "2026-01-14T11:12:21.028197",
+  "num_examples": 30,
+  "eval_type": "semantic",
+  "overall": {
+    "json_valid": 30,
+    "critical_field_accuracy": 0.31111111111111106,
+    "tool_selection_accuracy": 0.5333333333333333,
+    "overall_semantic_accuracy": 0.45925925925925914,
+    "total_latency_ms": 4982176.511526108,
+    "json_valid_rate": 1.0,
+    "avg_latency_ms": 166072.55038420358
+  },
+  "by_category": {
+    "standard": {
+      "json_valid": 9,
+      "critical_field_accuracy": 0.33333333333333326,
+      "tool_selection_accuracy": 0.5555555555555556,
+      "count": 9,
+      "json_valid_rate": 1.0
+    },
+    "slang": {
+      "json_valid": 15,
+      "critical_field_accuracy": 0.3777777777777777,
+      "tool_selection_accuracy": 0.6,
+      "count": 15,
+      "json_valid_rate": 1.0
+    },
+    "ambiguous": {
+      "json_valid": 1,
+      "critical_field_accuracy": 0.3333333333333333,
+      "tool_selection_accuracy": 1.0,
+      "count": 1,
+      "json_valid_rate": 1.0
+    },
+    "adversarial": {
+      "json_valid": 5,
+      "critical_field_accuracy": 0.06666666666666667,
+      "tool_selection_accuracy": 0.2,
+      "count": 5,
+      "json_valid_rate": 1.0
+    }
+  },
+  "by_difficulty": {
+    "medium": {
+      "json_valid": 13,
+      "critical_field_accuracy": 0.3589743589743589,
+      "tool_selection_accuracy": 0.5384615384615384,
+      "count": 13,
+      "json_valid_rate": 1.0
+    },
+    "hard": {
+      "json_valid": 17,
+      "critical_field_accuracy": 0.2745098039215686,
+      "tool_selection_accuracy": 0.5294117647058824,
+      "count": 17,
+      "json_valid_rate": 1.0
+    }
+  },
+  "examples": [
+    {
+      "prompt": "Help me prepare for my QBR",
+      "category": "standard",
+      "difficulty": "medium",
+      "is_valid": true,
+      "critical_field_accuracy": 0.6666666666666666,
+      "tool_selection_valid": true,
+      "overall_semantic_accuracy": 0.8888888888888888,
+      "latency_ms": 84928.32517623901
+    },
+    {
+      "prompt": "Which accounts haven't been touched in 30 days?",
+      "category": "standard",
+      "difficulty": "medium",
+      "is_valid": true,
+      "critical_field_accuracy": 0.3333333333333333,
+      "tool_selection_valid": false,
+      "overall_semantic_accuracy": 0.1111111111111111,
+      "latency_ms": 92743.85094642639
+    },
+    {
+      "prompt": "Net new ARR this quarter",
+      "category": "standard",
+      "difficulty": "medium",
+      "is_valid": true,
+      "critical_field_accuracy": 0.0,
+      "tool_selection_valid": true,
+      "overall_semantic_accuracy": 0.6666666666666666,
+      "latency_ms": 68149.61004257202
+    },
+    {
+      "prompt": "Show me SQLs from the webinar",
+      "category": "standard",
+      "difficulty": "medium",
+      "is_valid": true,
+      "critical_field_accuracy": 0.0,
+      "tool_selection_valid": false,
+      "overall_semantic_accuracy": 0.0,
+      "latency_ms": 77324.43904876709
+    },
+    {
+      "prompt": "Who's ghosting us?",
+      "category": "slang",
+      "difficulty": "hard",
+      "is_valid": true,
+      "critical_field_accuracy": 0.6666666666666666,
+      "tool_selection_valid": true,
+      "overall_semantic_accuracy": 0.8888888888888888,
+      "latency_ms": 173522.86314964294
+    },
+    {
+      "prompt": "Warm intros I can ask for",
+      "category": "slang",
+      "difficulty": "hard",
+      "is_valid": true,
+      "critical_field_accuracy": 0.0,
+      "tool_selection_valid": true,
+      "overall_semantic_accuracy": 0.6666666666666666,
+      "latency_ms": 60593.31512451172
+    },
+    {
+      "prompt": "Logos we can flip from Competitor Y",
+      "category": "slang",
+      "difficulty": "hard",
+      "is_valid": true,
+      "critical_field_accuracy": 0.3333333333333333,
+      "tool_selection_valid": true,
+      "overall_semantic_accuracy": 0.7777777777777778,
+      "latency_ms": 68788.51580619812
+    },
+    {
+      "prompt": "Multi-thread opportunities in enterprise",
+      "category": "slang",
+      "difficulty": "hard",
+      "is_valid": true,
+      "critical_field_accuracy": 0.3333333333333333,
+      "tool_selection_valid": false,
+      "overall_semantic_accuracy": 0.1111111111111111,
+      "latency_ms": 67540.86995124817
+    },
+    {
+      "prompt": "Stuck deals I need to unstick",
+      "category": "slang",
+      "difficulty": "hard",
+      "is_valid": true,
+      "critical_field_accuracy": 0.3333333333333333,
+      "tool_selection_valid": false,
+      "overall_semantic_accuracy": 0.1111111111111111,
+      "latency_ms": 109008.90684127808
+    },
+    {
+      "prompt": "Champion changes at key accounts",
+      "category": "slang",
+      "difficulty": "hard",
+      "is_valid": true,
+      "critical_field_accuracy": 0.3333333333333333,
+      "tool_selection_valid": false,
+      "overall_semantic_accuracy": 0.1111111111111111,
+      "latency_ms": 135724.47395324707
+    },
+    {
+      "prompt": "Pipeline coverage for next quarter",
+      "category": "standard",
+      "difficulty": "medium",
+      "is_valid": true,
+      "critical_field_accuracy": 0.6666666666666666,
+      "tool_selection_valid": true,
+      "overall_semantic_accuracy": 0.8888888888888888,
+      "latency_ms": 119240.48590660095
+    },
+    {
+      "prompt": "Accounts with product usage drop",
+      "category": "standard",
+      "difficulty": "medium",
+      "is_valid": true,
+      "critical_field_accuracy": 0.3333333333333333,
+      "tool_selection_valid": false,
+      "overall_semantic_accuracy": 0.1111111111111111,
+      "latency_ms": 99512.934923172
+    },
+    {
+      "prompt": "Where should I spend my time today?",
+      "category": "ambiguous",
+      "difficulty": "hard",
+      "is_valid": true,
+      "critical_field_accuracy": 0.3333333333333333,
+      "tool_selection_valid": true,
+      "overall_semantic_accuracy": 0.7777777777777778,
+      "latency_ms": 288521.9724178314
+    },
+    {
+      "prompt": "stuff",
+      "category": "adversarial",
+      "difficulty": "hard",
+      "is_valid": true,
+      "critical_field_accuracy": 0.3333333333333333,
+      "tool_selection_valid": true,
+      "overall_semantic_accuracy": 0.7777777777777778,
+      "latency_ms": 141439.15581703186
+    },
+    {
+      "prompt": "Tell me about the weather",
+      "category": "adversarial",
+      "difficulty": "hard",
+      "is_valid": true,
+      "critical_field_accuracy": 0.0,
+      "tool_selection_valid": false,
+      "overall_semantic_accuracy": 0.0,
+      "latency_ms": 225383.95714759827
+    },
+    {
+      "prompt": "Generate a poem about sales",
+      "category": "adversarial",
+      "difficulty": "hard",
+      "is_valid": true,
+      "critical_field_accuracy": 0.0,
+      "tool_selection_valid": false,
+      "overall_semantic_accuracy": 0.0,
+      "latency_ms": 200913.71488571167
+    },
+    {
+      "prompt": "blahblahblah",
+      "category": "adversarial",
+      "difficulty": "hard",
+      "is_valid": true,
+      "critical_field_accuracy": 0.0,
+      "tool_selection_valid": false,
+      "overall_semantic_accuracy": 0.0,
+      "latency_ms": 179537.202835083
+    },
+    {
+      "prompt": "Book me a flight to NYC",
+      "category": "adversarial",
+      "difficulty": "hard",
+      "is_valid": true,
+      "critical_field_accuracy": 0.0,
+      "tool_selection_valid": false,
+      "overall_semantic_accuracy": 0.0,
+      "latency_ms": 193092.07701683044
+    },
+    {
+      "prompt": "PLG accounts ready for sales touch",
+      "category": "slang",
+      "difficulty": "hard",
+      "is_valid": true,
+      "critical_field_accuracy": 0.3333333333333333,
+      "tool_selection_valid": true,
+      "overall_semantic_accuracy": 0.7777777777777778,
+      "latency_ms": 191487.86568641663
+    },
+    {
+      "prompt": "Closed-lost we can re-engage",
+      "category": "slang",
+      "difficulty": "hard",
+      "is_valid": true,
+      "critical_field_accuracy": 0.0,
+      "tool_selection_valid": true,
+      "overall_semantic_accuracy": 0.6666666666666666,
+      "latency_ms": 351478.34968566895
+    },
+    {
+      "prompt": "Give me the TL;DR on my pipeline",
+      "category": "slang",
+      "difficulty": "medium",
+      "is_valid": true,
+      "critical_field_accuracy": 0.6666666666666666,
+      "tool_selection_valid": true,
+      "overall_semantic_accuracy": 0.8888888888888888,
+      "latency_ms": 130045.47476768494
+    },
+    {
+      "prompt": "LATAM expansion targets",
+      "category": "standard",
+      "difficulty": "medium",
+      "is_valid": true,
+      "critical_field_accuracy": 0.0,
+      "tool_selection_valid": true,
+      "overall_semantic_accuracy": 0.6666666666666666,
+      "latency_ms": 125753.38697433472
+    },
+    {
+      "prompt": "Trials converting this week",
+      "category": "standard",
+      "difficulty": "medium",
+      "is_valid": true,
+      "critical_field_accuracy": 0.3333333333333333,
+      "tool_selection_valid": true,
+      "overall_semantic_accuracy": 0.7777777777777778,
+      "latency_ms": 136088.21415901184
+    },
+    {
+      "prompt": "High NPS accounts for case studies",
+      "category": "standard",
+      "difficulty": "medium",
+      "is_valid": true,
+      "critical_field_accuracy": 0.6666666666666666,
+      "tool_selection_valid": false,
+      "overall_semantic_accuracy": 0.2222222222222222,
+      "latency_ms": 123807.5921535492
+    },
+    {
+      "prompt": "Slipping deals I need to save",
+      "category": "slang",
+      "difficulty": "medium",
+      "is_valid": true,
+      "critical_field_accuracy": 0.3333333333333333,
+      "tool_selection_valid": true,
+      "overall_semantic_accuracy": 0.7777777777777778,
+      "latency_ms": 126966.68291091919
+    },
+    {
+      "prompt": "Low-hanging fruit in my territory",
+      "category": "slang",
+      "difficulty": "medium",
+      "is_valid": true,
+      "critical_field_accuracy": 0.3333333333333333,
+      "tool_selection_valid": false,
+      "overall_semantic_accuracy": 0.1111111111111111,
+      "latency_ms": 140526.4549255371
+    },
+    {
+      "prompt": "What's the ask for the all-hands?",
+      "category": "slang",
+      "difficulty": "hard",
+      "is_valid": true,
+      "critical_field_accuracy": 0.0,
+      "tool_selection_valid": true,
+      "overall_semantic_accuracy": 0.6666666666666666,
+      "latency_ms": 127537.73498535156
+    },
+    {
+      "prompt": "Spiff-eligible deals this month",
+      "category": "slang",
+      "difficulty": "hard",
+      "is_valid": true,
+      "critical_field_accuracy": 0.6666666666666666,
+      "tool_selection_valid": false,
+      "overall_semantic_accuracy": 0.2222222222222222,
+      "latency_ms": 1001743.1790828705
+    },
+    {
+      "prompt": "Build me a hit list for next week",
+      "category": "slang",
+      "difficulty": "medium",
+      "is_valid": true,
+      "critical_field_accuracy": 0.3333333333333333,
+      "tool_selection_valid": false,
+      "overall_semantic_accuracy": 0.1111111111111111,
+      "latency_ms": 76323.0881690979
+    },
+    {
+      "prompt": "Which whales are in play?",
+      "category": "slang",
+      "difficulty": "hard",
+      "is_valid": true,
+      "critical_field_accuracy": 1.0,
+      "tool_selection_valid": true,
+      "overall_semantic_accuracy": 1.0,
+      "latency_ms": 64451.81703567505
+    }
+  ]
+}
